@@ -1,16 +1,15 @@
-import { Canvas } from '@react-three/fiber';
-import { Suspense, useEffect, useState } from 'react';
-import { useMediaQuery } from '@/hooks/use-mobile';
-import Starfield from './Starfield';
-import NeuralNetwork from './NeuralNetwork';
+import { Canvas } from "@react-three/fiber";
+import { Suspense, useEffect, useState } from "react";
+import { useMediaQuery } from "@/hooks/use-mobile";
+import Starfield from "./Starfield";
+import NeuralNetwork from "./NeuralNetwork";
 
 interface CosmicSceneProps {
-  scrollProgress: number;
   currentSection: string;
 }
 
-const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+const CosmicScene = ({ currentSection }: CosmicSceneProps) => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -33,21 +32,21 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
         gl={{
           antialias: true,
           alpha: true,
-          powerPreference: 'high-performance',
+          powerPreference: "high-performance",
         }}
         dpr={[1, isMobile ? 1.5 : 2]}
       >
-        <color attach="background" args={['#070B14']} />
-        
+        <color attach="background" args={["#070B14"]} />
+
         <Suspense fallback={null}>
           <ambientLight intensity={0.1} />
-          
+
           {/* Starfield */}
-          <Starfield count={starCount} scrollProgress={scrollProgress} />
-          
+          <Starfield count={starCount} />
+
           {/* Neural network - visible in hero/about */}
-          {showNeural && <NeuralNetwork scrollProgress={scrollProgress} />}
-          
+          {showNeural && <NeuralNetwork />}
+
           {/* Neural accent lights */}
           <pointLight
             position={[0, 0, -60]}
@@ -55,7 +54,7 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
             color="#7C7CFF"
             distance={120}
           />
-          
+
           <pointLight
             position={[30, 20, -40]}
             intensity={0.8}

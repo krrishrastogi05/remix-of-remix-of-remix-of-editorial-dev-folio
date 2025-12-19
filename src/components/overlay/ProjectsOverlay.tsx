@@ -1,171 +1,203 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 
-interface Project {
-  title: string;
-  description: string;
-  technologies: string[];
-  sourceUrl?: string;
-  demoUrl?: string;
-}
-
-const projects: Project[] = [
+const projects = [
   {
-    title: "Argus.AI",
+    title: "ARGUS.AI",
+    category: "Disaster Management System",
     description:
       "A sophisticated AI-powered command center that processes real-time social media data and emergency calls to provide actionable intelligence for crisis response.",
-    technologies: ["React", "Node.js", "MongoDB", "Socket.io", "Gemini API"],
+    technologies: ["React", "Node.js", "Gemini Pro", "Socket.io"],
     sourceUrl: "https://github.com/krrishrastogi05/Argus.AI",
     demoUrl: "https://argus-ai-psi.vercel.app",
+    color: "#ef4444", // Red for emergency
+    gradient: "from-red-500/20 via-orange-500/20 to-transparent",
   },
   {
-    title: "CodeFortress Extension",
+    title: "CODEFORTRESS",
+    category: "Developer Productivity",
     description:
-      "A productivity tool for competitive programmers that combines a Chrome extension and VSCode extension to scrape Codeforces contest problems.",
-    technologies: [
-      "Chrome Ext",
-      "VSCode Ext",
-      "TypeScript",
-      "Node.js",
-      "WebSocket",
-    ],
+      "A complete ecosystem for competitive programmers combining a Chrome extension and VSCode extension to scrape and solve Codeforces problems instantly.",
+    technologies: ["TypeScript", "Chrome API", "WebSocket", "Node.js"],
     sourceUrl: "https://github.com/krrishrastogi05/CodeFortress-Extension",
+    color: "#3b82f6", // Blue for tech
+    gradient: "from-blue-500/20 via-cyan-500/20 to-transparent",
   },
   {
-    title: "Traffic Management System",
+    title: "TRAFFIC.SYS",
+    category: "Backend Architecture",
     description:
-      "A backend workflow system that utilizes Google Routes API combined with cron jobs to fetch traffic information between two points at regular intervals.",
-    technologies: ["JavaScript", "Node.js", "GCP", "Routes API", "Cron Jobs"],
+      "High-performance backend workflow utilizing Google Routes API and Cron Jobs to analyze traffic density and predict congestion patterns between coordinates.",
+    technologies: ["Node.js", "GCP", "Redis", "Cron Architecture"],
     sourceUrl: "https://github.com/krrishrastogi05/traffic-management-system",
+    color: "#10b981", // Green for traffic
+    gradient: "from-emerald-500/20 via-green-500/20 to-transparent",
   },
 ];
 
-const ProjectCard = ({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+const ProjectCard = ({ project, index }) => {
+  // Mouse tracking for Spotlight effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
   return (
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, x: -30 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group relative pl-8 border-l border-white/30 hover:border-white transition-colors"
+      onMouseMove={handleMouseMove}
+      className="group relative w-full rounded-3xl border border-white/10 bg-gray-900/50 hover:border-white/20 overflow-hidden transition-colors duration-500"
     >
-      {/* Timeline dot */}
-      <div className="absolute left-0 top-0 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-125 transition-transform" />
+      {/* 1. Spotlight Overlay */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              650px circle at ${mouseX}px ${mouseY}px,
+              ${project.color}15,
+              transparent 80%
+            )
+          `,
+        }}
+      />
 
-      {/* Project number */}
-      <div className="font-mono text-[10px] sm:text-xs text-white/60 mb-2">
-        PROJECT_{String(index + 1).padStart(2, "0")}
-      </div>
+      {/* 2. Inner Grid Layout */}
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 md:p-12">
+        
+        {/* LEFT COLUMN: Info */}
+        <div className="lg:col-span-8 flex flex-col justify-between h-full">
+          <div>
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-4">
+              <span 
+                className="px-3 py-1 text-[10px] uppercase tracking-widest font-mono rounded-full border bg-white/5"
+                style={{ borderColor: `${project.color}30`, color: project.color }}
+              >
+                {project.category}
+              </span>
+            </div>
 
-      {/* Title */}
-      <h3 className="text-xl sm:text-2xl font-display font-bold text-foreground mb-3 group-hover:text-white transition-colors">
-        {project.title}
-      </h3>
+            {/* Title */}
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-6 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/50 transition-all">
+              {project.title}
+            </h3>
 
-      {/* Description */}
-      <p className="text-muted-foreground text-sm leading-relaxed mb-4 max-w-md">
-        {project.description}
-      </p>
+            {/* Description */}
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mb-8">
+              {project.description}
+            </p>
 
-      {/* Technologies */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {project.technologies.map((tech) => (
-          <span
-            key={tech}
-            className="px-2 py-0.5 font-mono text-[10px] sm:text-xs text-white border-b border-white/40"
+            {/* Tech Stack */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1.5 text-xs font-mono text-white/60 bg-white/5 rounded-md border border-white/5 hover:border-white/20 transition-colors"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Links */}
+          <div className="flex items-center gap-6 pt-6 border-t border-white/5">
+            {project.sourceUrl && (
+              <a
+                href={project.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-white transition-colors group/link"
+              >
+                <Github className="w-4 h-4" />
+                <span>Source Code</span>
+                <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+              </a>
+            )}
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-medium text-white transition-colors group/link"
+              >
+                <ExternalLink className="w-4 h-4 text-emerald-400" />
+                <span>Live Demo</span>
+                <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: The Giant Number Visual */}
+        <div className="lg:col-span-4 relative min-h-[200px] lg:min-h-full flex items-center justify-center lg:justify-end overflow-hidden">
+          {/* Abstract Gradient Blob */}
+          <div 
+            className={`absolute w-64 h-64 rounded-full blur-[100px] opacity-20 bg-gradient-to-br ${project.gradient}`} 
+          />
+          
+          {/* Giant Number */}
+          <span 
+            className="font-display font-black text-[120px] sm:text-[180px] leading-none text-white/[0.03] select-none group-hover:text-white/[0.06] transition-colors duration-500"
+            style={{ 
+              WebkitTextStroke: `1px ${project.color}20` 
+            }}
           >
-            {tech}
+            0{index + 1}
           </span>
-        ))}
+        </div>
       </div>
-
-      {/* Links */}
-      <div className="flex items-center gap-4">
-        {project.sourceUrl && (
-          <a
-            href={project.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-white transition-colors"
-          >
-            <Github size={14} />
-            <span>Source</span>
-          </a>
-        )}
-        {project.demoUrl && (
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-white transition-colors"
-          >
-            <ExternalLink size={14} />
-            <span>Demo</span>
-          </a>
-        )}
-      </div>
-    </motion.article>
+    </motion.div>
   );
 };
 
 const ProjectsOverlay = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section
-      id="projects"
-      className="relative min-h-screen py-20 sm:py-32 px-4 sm:px-6"
-      ref={ref}
-    >
-      <div className="max-w-3xl mx-auto md:ml-24">
-        {/* Section label */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12"
-        >
-          <div className="w-8 sm:w-12 h-px bg-white" />
-          <span className="font-mono text-xs sm:text-sm text-white tracking-widest">
-            03 / PROJECTS
-          </span>
-        </motion.div>
+    <section id="projects" className="relative min-h-screen py-24 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Header */}
+        <div className="mb-16 md:mb-24">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-8 h-px bg-indigo-500" />
+            <span className="text-indigo-400 font-mono text-xs tracking-widest uppercase">
+              03 / Portfolio
+            </span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-6">
+            Selected <span className="text-white/40">Works</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            A showcase of complex systems, full-stack applications, and developer tools built to solve real problems.
+          </p>
+        </div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-3 sm:mb-4"
-        >
-          Featured <span className="text-white">Work</span>
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm sm:text-base text-muted-foreground mb-12 sm:mb-16 max-w-xl"
-        >
-          A timeline of projects that push boundaries and explore new frontiers
-          in technology.
-        </motion.p>
-
-        {/* Projects timeline */}
-        <div className="space-y-12 sm:space-y-16">
+        {/* Projects Grid */}
+        <div className="space-y-8 md:space-y-12">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-20 text-center">
+          <a
+            href="https://github.com/krrishrastogi05"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all hover:scale-105"
+          >
+            <Github className="w-5 h-5" />
+            View Full Github Archive
+          </a>
         </div>
       </div>
     </section>

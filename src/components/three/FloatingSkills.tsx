@@ -1,29 +1,29 @@
-import { useRef, useMemo } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef, useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Text } from "@react-three/drei";
+import * as THREE from "three";
+import { scrollStore } from "@/lib/scroll-store";
 
 interface FloatingSkillsProps {
   visible?: boolean;
-  scrollProgress?: number;
 }
 
 const skills = [
-  { name: 'React', color: '#61dafb' },
-  { name: 'TypeScript', color: '#3178c6' },
-  { name: 'Node.js', color: '#68a063' },
-  { name: 'Python', color: '#ffd43b' },
-  { name: 'Next.js', color: '#ffffff' },
-  { name: 'PostgreSQL', color: '#336791' },
-  { name: 'Docker', color: '#2496ed' },
-  { name: 'Redis', color: '#dc382d' },
-  { name: 'DSA', color: '#a855f7' },
-  { name: 'DBMS', color: '#06b6d4' },
-  { name: 'OS', color: '#ec4899' },
-  { name: 'CN', color: '#f59e0b' },
+  { name: "React", color: "#61dafb" },
+  { name: "TypeScript", color: "#3178c6" },
+  { name: "Node.js", color: "#68a063" },
+  { name: "Python", color: "#ffd43b" },
+  { name: "Next.js", color: "#ffffff" },
+  { name: "PostgreSQL", color: "#336791" },
+  { name: "Docker", color: "#2496ed" },
+  { name: "Redis", color: "#dc382d" },
+  { name: "DSA", color: "#a855f7" },
+  { name: "DBMS", color: "#06b6d4" },
+  { name: "OS", color: "#ec4899" },
+  { name: "CN", color: "#f59e0b" },
 ];
 
-const FloatingSkills = ({ visible = true, scrollProgress = 0 }: FloatingSkillsProps) => {
+const FloatingSkills = ({ visible = true }: FloatingSkillsProps) => {
   const groupRef = useRef<THREE.Group>(null);
 
   const skillPositions = useMemo(() => {
@@ -44,10 +44,10 @@ const FloatingSkills = ({ visible = true, scrollProgress = 0 }: FloatingSkillsPr
     if (!groupRef.current || !visible) return;
 
     const time = state.clock.getElapsedTime();
-    
+
     // Rotate the entire group slowly
     groupRef.current.rotation.y = time * 0.1;
-    
+
     // Update each skill position for floating effect
     groupRef.current.children.forEach((child, i) => {
       const floatY = Math.sin(time * 0.5 + i * 0.5) * 0.3;
@@ -76,7 +76,7 @@ const FloatingSkills = ({ visible = true, scrollProgress = 0 }: FloatingSkillsPr
                 blending={THREE.AdditiveBlending}
               />
             </mesh>
-            
+
             {/* Skill text */}
             <Text
               fontSize={0.4}

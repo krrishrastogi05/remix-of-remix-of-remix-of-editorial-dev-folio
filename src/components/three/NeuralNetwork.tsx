@@ -1,12 +1,11 @@
-import { useRef, useMemo } from 'react';
-import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
+import { useRef, useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
+import { scrollStore } from "@/lib/scroll-store";
 
-interface NeuralNetworkProps {
-  scrollProgress?: number;
-}
+interface NeuralNetworkProps {}
 
-const NeuralNetwork = ({ scrollProgress = 0 }: NeuralNetworkProps) => {
+const NeuralNetwork = ({}: NeuralNetworkProps) => {
   const groupRef = useRef<THREE.Group>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
 
@@ -21,11 +20,13 @@ const NeuralNetwork = ({ scrollProgress = 0 }: NeuralNetworkProps) => {
       const radius = 6 + Math.random() * 8;
 
       // Slightly flatten to make it more brain-like
-      nodes.push(new THREE.Vector3(
-        radius * Math.sin(theta) * Math.cos(phi),
-        radius * Math.sin(theta) * Math.sin(phi) * 0.8,
-        radius * Math.cos(theta)
-      ));
+      nodes.push(
+        new THREE.Vector3(
+          radius * Math.sin(theta) * Math.cos(phi),
+          radius * Math.sin(theta) * Math.sin(phi) * 0.8,
+          radius * Math.cos(theta)
+        )
+      );
     }
 
     // Create connections between nearby nodes
@@ -37,8 +38,12 @@ const NeuralNetwork = ({ scrollProgress = 0 }: NeuralNetworkProps) => {
         const distance = nodes[i].distanceTo(nodes[j]);
         if (distance < maxDistance && Math.random() > 0.3) {
           lines.push(
-            nodes[i].x, nodes[i].y, nodes[i].z,
-            nodes[j].x, nodes[j].y, nodes[j].z
+            nodes[i].x,
+            nodes[i].y,
+            nodes[i].z,
+            nodes[j].x,
+            nodes[j].y,
+            nodes[j].z
           );
         }
       }
@@ -51,17 +56,17 @@ const NeuralNetwork = ({ scrollProgress = 0 }: NeuralNetworkProps) => {
     if (!groupRef.current) return;
 
     const time = state.clock.getElapsedTime();
-    
+
     // Gentle rotation
     groupRef.current.rotation.y = time * 0.08;
     groupRef.current.rotation.x = Math.sin(time * 0.05) * 0.1;
-    
+
     // Floating motion
     groupRef.current.position.y = Math.sin(time * 0.3) * 0.5;
-    
+
     // Move based on scroll
-    groupRef.current.position.z = 5 - scrollProgress * 25;
-    
+    groupRef.current.position.z = 5 - scrollStore.progress * 25;
+
     // Pulse the lines
     if (linesRef.current) {
       const mat = linesRef.current.material as THREE.LineBasicMaterial;
@@ -94,7 +99,15 @@ const NeuralNetwork = ({ scrollProgress = 0 }: NeuralNetworkProps) => {
         <mesh key={i} position={pos}>
           <sphereGeometry args={[0.12, 12, 12]} />
           <meshBasicMaterial
-            color={i % 4 === 0 ? '#ff8c1a' : i % 4 === 1 ? '#00d4d4' : i % 4 === 2 ? '#ffc107' : '#ffffff'}
+            color={
+              i % 4 === 0
+                ? "#ff8c1a"
+                : i % 4 === 1
+                ? "#00d4d4"
+                : i % 4 === 2
+                ? "#ffc107"
+                : "#ffffff"
+            }
             toneMapped={false}
           />
         </mesh>

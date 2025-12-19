@@ -9,7 +9,7 @@ import ScrollProgressLine from "@/components/overlay/ScrollProgressLine";
 import AudioController from "@/components/AudioController";
 
 const Index = () => {
-  const { scrollProgress, currentSection } = useScrollProgress();
+  const { currentSection } = useScrollProgress();
 
   return (
     <>
@@ -17,13 +17,10 @@ const Index = () => {
       <AudioController />
 
       {/* 3D Background */}
-      <CosmicScene
-        scrollProgress={scrollProgress}
-        currentSection={currentSection}
-      />
+      <CosmicScene currentSection={currentSection} />
 
       {/* Scroll Progress Line */}
-      <ScrollProgressLine progress={scrollProgress} />
+      <ScrollProgressLine />
 
       {/* Content Overlay */}
       <main className="relative z-10">

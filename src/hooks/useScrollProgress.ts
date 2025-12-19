@@ -1,45 +1,51 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { scrollStore } from "@/lib/scroll-store";
 
 export const useScrollProgress = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [currentSection, setCurrentSection] = useState('hero');
+  const [currentSection, setCurrentSection] = useState("hero");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-      setScrollProgress(Math.min(1, Math.max(0, progress)));
+    // Use ScrollTrigger to determine current section
+    const sections = ["hero", "about", "skills", "projects"];
 
-      // Determine current section
-      const sections = ['hero', 'about', 'skills', 'projects'];
-      const viewportMiddle = scrollTop + window.innerHeight / 2;
+    // Create triggers for sections
+    const triggers: ScrollTrigger[] = [];
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i] === 'hero' ? '' : sections[i]) || 
-                       (sections[i] === 'hero' ? document.body : null);
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          const sectionTop = scrollTop + rect.top;
-          if (viewportMiddle >= sectionTop) {
-            setCurrentSection(sections[i]);
-            break;
-          }
-        }
+    sections.forEach((section) => {
+      // For hero, we might want to target the top of the page
+      const target = section === "hero" ? "#hero" : `#${section}`;
+      const element = document.querySelector(target);
+
+      if (element) {
+        triggers.push(
+          ScrollTrigger.create({
+            trigger: element,
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => setCurrentSection(section),
+            onEnterBack: () => setCurrentSection(section),
+          })
+        );
       }
+    });
 
-      // Simple threshold-based detection as fallback
-      if (progress < 0.2) setCurrentSection('hero');
-      else if (progress < 0.45) setCurrentSection('about');
-      else if (progress < 0.7) setCurrentSection('skills');
-      else setCurrentSection('projects');
+    // Global scroll progress tracker
+    const progressTrigger = ScrollTrigger.create({
+      trigger: document.body,
+      start: "top top",
+      end: "bottom bottom",
+      onUpdate: (self) => {
+        scrollStore.progress = self.progress;
+      },
+    });
+
+    return () => {
+      progressTrigger.kill();
+      triggers.forEach((t) => t.kill());
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return { scrollProgress, currentSection };
+  return { scrollProgress: 0, currentSection };
 };

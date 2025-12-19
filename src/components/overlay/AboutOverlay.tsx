@@ -1,91 +1,115 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const AboutOverlay = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section
       id="about"
-      className="relative min-h-screen flex items-center py-20 sm:py-32 px-4 sm:px-6"
+      className="relative min-h-screen flex items-center justify-center py-20 sm:py-32 px-4 sm:px-6 overflow-hidden"
       ref={ref}
     >
-      <div className="max-w-3xl mx-auto w-full md:ml-24">
-        {/* Section label */}
+      {/* Background Decor (Optional Giant '01') */}
+      <div className="absolute top-20 left-4 sm:left-10 text-[20vw] font-bold text-white/[0.02] leading-none select-none pointer-events-none font-display">
+        01
+      </div>
+
+      <div className="max-w-5xl mx-auto w-full relative z-10">
+        {/* Section Label */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12"
+          className="flex items-center gap-3 sm:gap-4 mb-12 sm:mb-16"
         >
-          <div className="w-8 sm:w-12 h-px bg-white" />
-          <span className="font-mono text-xs sm:text-sm text-white tracking-widest">
-            01 / ABOUT
+          <div className="w-8 sm:w-12 h-px bg-indigo-500" />
+          <span className="font-mono text-xs sm:text-sm text-indigo-400 tracking-widest uppercase">
+            01 / The Mission
           </span>
         </motion.div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-6"
+        {/* The "Manifesto" Text */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="font-display font-bold leading-[1.1] tracking-tight"
         >
-          Where <span className="text-white">Creativity</span> meets{" "}
-          <span className="text-white">Code</span>
-        </motion.h2>
+          {/* Line 1 */}
+          <motion.h2 variants={itemVariants} className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-muted-foreground mb-4">
+            I don't just write code.
+          </motion.h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 max-w-xl"
-        >
-          Building software solutions that enhance user experiences and drive
-          impact. I specialize in full-stack development with React, Next.js,
-          and Python, alongside AI/ML applications including NLP and Computer
-          Vision.
-        </motion.p>
+          {/* Line 2 */}
+          <motion.h2 variants={itemVariants} className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4">
+            I engineer <span className="text-white inline-block border-b-4 border-indigo-500/50 pb-1">solutions</span>.
+          </motion.h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl"
-        >
-          Passionate about open source and the endless possibilities that emerge
-          when thinking takes us into the universe and beyond.
-        </motion.p>
+          {/* Line 3 - The Core Skills */}
+          <motion.div variants={itemVariants} className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-muted-foreground/80 mt-8 leading-snug">
+            Fusing{" "}
+            <span className="inline-block bg-indigo-500/10 text-indigo-300 px-3 py-1 rounded-lg border border-indigo-500/20 mx-1">
+              Full-Stack
+            </span>{" "}
+            architecture with{" "}
+            <span className="inline-block bg-purple-500/10 text-purple-300 px-3 py-1 rounded-lg border border-purple-500/20 mx-1">
+              AI/ML
+            </span>{" "}
+            intelligence.
+          </motion.div>
 
-        {/* Floating stats */}
+          {/* Line 4 - The Description */}
+          <motion.p 
+            variants={itemVariants} 
+            className="mt-12 text-base sm:text-xl md:text-2xl text-muted-foreground font-light max-w-3xl leading-relaxed"
+          >
+            Passionate about <span className="text-white font-medium">Open Source</span> and building complex backend systems that solve real-world problems. 
+            Currently exploring the endless possibilities of <span className="text-white font-medium">Computer Vision</span> and <span className="text-white font-medium">NLP</span>.
+          </motion.p>
+        </motion.div>
+
+        {/* Bottom Stats / Signature */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-12 flex flex-wrap gap-8"
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="mt-16 sm:mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-8"
         >
           {[
-            { value: "Full-Stack", label: "Focus" },
-            { value: "AI/ML", label: "Specialty" },
-            { value: "Open Source", label: "Passion" },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.8 + i * 0.1 }}
-              className="relative"
-            >
-              <div className="text-lg sm:text-xl font-display font-bold text-white">
-                {stat.value}
+            { label: "Experience", value: "3+ Years" },
+            { label: "Projects", value: "25+ Built" },
+            { label: "Focus", value: "Backend Systems" },
+            { label: "Location", value: "Global Remote" },
+          ].map((item, i) => (
+            <div key={i}>
+              <div className="text-xs font-mono text-muted-foreground mb-1 uppercase tracking-wider">
+                {item.label}
               </div>
-              <div className="text-xs font-mono text-muted-foreground tracking-wider">
-                {stat.label}
+              <div className="text-lg sm:text-xl font-bold text-white">
+                {item.value}
               </div>
-              {/* Decorative line */}
-              <div className="absolute -left-4 top-0 h-full w-px bg-gradient-to-b from-cosmic-orange/50 to-transparent" />
-            </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>
