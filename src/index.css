@@ -6,55 +6,58 @@
 
 @layer base {
   :root {
-    /* Cosmic Neural Core Theme */
+    /* Cosmic Neural Core Theme - #070B14 */
     --background: 222 47% 5%;
-    --foreground: 0 0% 100%;
+    --foreground: 220 13% 91%; /* #E5E7EB */
 
+    /* Surface / Cards - #0F172A */
     --card: 222 47% 11%;
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 220 13% 91%;
 
     --popover: 222 47% 11%;
-    --popover-foreground: 0 0% 100%;
+    --popover-foreground: 220 13% 91%;
 
-    /* Neural Violet as Primary */
+    /* Neural Violet as Primary - #7C7CFF */
     --primary: 240 100% 74%;
     --primary-foreground: 222 47% 5%;
 
-    /* Electric Cyan as Secondary */
+    /* Electric Cyan as Secondary - #00E5FF */
     --secondary: 187 100% 50%;
     --secondary-foreground: 222 47% 5%;
 
-    --muted: 222 30% 18%;
-    --muted-foreground: 215 20% 65%;
+    /* Muted - #1E293B */
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 16% 65%; /* #94A3B8 */
 
-    /* Soft Glow Accent */
-    --accent: 199 89% 61%;
+    /* Soft Glow Accent - #38BDF8 */
+    --accent: 199 89% 60%;
     --accent-foreground: 222 47% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 220 13% 91%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
+    /* Border / Dividers - #1E293B */
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
     --ring: 240 100% 74%;
 
     --radius: 0.5rem;
 
     /* Cosmic Neural Core Palette */
     --cosmic-void: 222 47% 4%;
-    --cosmic-deep: 222 47% 5%;
-    --cosmic-surface: 222 47% 11%;
-    --cosmic-border: 222 30% 18%;
+    --cosmic-deep: 222 47% 5%; /* #070B14 */
+    --cosmic-surface: 222 47% 11%; /* #0F172A */
+    --cosmic-border: 217 33% 17%; /* #1E293B */
     
     /* Neural Accents */
-    --neural-violet: 240 100% 74%;
-    --neural-cyan: 187 100% 50%;
-    --neural-glow: 199 89% 61%;
+    --neural-violet: 240 100% 74%; /* #7C7CFF */
+    --neural-cyan: 187 100% 50%; /* #00E5FF */
+    --neural-glow: 199 89% 60%; /* #38BDF8 */
     
     /* Typography */
-    --text-primary: 0 0% 100%;
-    --text-muted: 215 20% 75%;
-    --text-subtle: 215 16% 55%;
+    --text-primary: 220 13% 91%; /* #E5E7EB */
+    --text-muted: 215 16% 65%; /* #94A3B8 */
+    --text-subtle: 215 16% 47%; /* #64748B */
 
     /* Glow Effects */
     --glow-violet: 240 100% 74%;
@@ -63,23 +66,23 @@
 
   .dark {
     --background: 222 47% 5%;
-    --foreground: 0 0% 100%;
+    --foreground: 220 13% 91%;
     --card: 222 47% 11%;
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 220 13% 91%;
     --popover: 222 47% 11%;
-    --popover-foreground: 0 0% 100%;
+    --popover-foreground: 220 13% 91%;
     --primary: 240 100% 74%;
     --primary-foreground: 222 47% 5%;
     --secondary: 187 100% 50%;
     --secondary-foreground: 222 47% 5%;
-    --muted: 222 30% 18%;
-    --muted-foreground: 215 20% 75%;
-    --accent: 199 89% 61%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 16% 65%;
+    --accent: 199 89% 60%;
     --accent-foreground: 222 47% 5%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 220 13% 91%;
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
     --ring: 240 100% 74%;
   }
 }
