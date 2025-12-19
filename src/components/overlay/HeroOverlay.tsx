@@ -38,16 +38,16 @@ const HeroOverlay = () => {
           and enhancing user experiences.
         </motion.p>
 
-        {/* CTA - positioned at bottom left */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
-          className="fixed bottom-32 left-6 sm:left-12 flex flex-col gap-3 z-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
             href="#projects"
-            className="group relative px-8 py-3.5 bg-cosmic-orange text-primary-foreground font-semibold rounded-md overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(255,140,26,0.6)] hover:scale-105"
+            className="group relative px-8 py-3.5 bg-cosmic-orange text-primary-foreground font-semibold rounded-md overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(255,140,26,0.5)] hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2">
               View Projects
@@ -60,26 +60,26 @@ const HeroOverlay = () => {
           
           <a
             href="#about"
-            className="px-8 py-3.5 border-2 border-cosmic-cyan/60 text-cosmic-cyan font-semibold rounded-md transition-all hover:bg-cosmic-cyan/15 hover:border-cosmic-cyan hover:shadow-[0_0_30px_rgba(0,212,212,0.4)] hover:scale-105 text-center backdrop-blur-sm"
+            className="px-8 py-3.5 border-2 border-cosmic-cyan/60 text-cosmic-cyan font-semibold rounded-md transition-all hover:bg-cosmic-cyan/10 hover:border-cosmic-cyan hover:shadow-[0_0_25px_rgba(0,212,212,0.3)] hover:scale-105"
           >
             About Me
           </a>
         </motion.div>
       </div>
 
-      {/* Scroll indicator - bottom center */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-24 left-1/2 -translate-x-1/2"
       >
         <div className="flex flex-col items-center gap-2">
           <span className="text-xs font-mono text-muted-foreground/60 tracking-widest">SCROLL</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-px h-6 sm:h-8 bg-gradient-to-b from-cosmic-orange/50 to-transparent"
+            className="w-px h-8 bg-gradient-to-b from-cosmic-orange/50 to-transparent"
           />
         </div>
       </motion.div>
