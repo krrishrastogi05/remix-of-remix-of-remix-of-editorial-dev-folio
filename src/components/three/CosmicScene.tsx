@@ -25,8 +25,8 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
   const showSkills = currentSection === 'skills';
   const showNeural = currentSection === 'hero' || currentSection === 'about';
 
-  // Camera much closer for skills section to make globe prominent
-  const cameraZ = showSkills ? 12 : (isMobile ? 35 : 30);
+  // Camera positioning - closer for skills to show the big globe
+  const cameraZ = showSkills ? 25 : (isMobile ? 35 : 30);
 
   return (
     <div className="fixed inset-0 z-0">

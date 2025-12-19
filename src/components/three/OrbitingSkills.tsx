@@ -46,7 +46,7 @@ const OrbitingSkills = ({ visible = true }: OrbitingSkillsProps) => {
   const coreRef = useRef<THREE.Mesh>(null);
   const wireframeRef = useRef<THREE.Mesh>(null);
 
-  const sphereRadius = 8; // Larger radius for more prominent globe
+  const sphereRadius = 12; // Much larger radius
   const skillPositions = useMemo(() => generateSpherePositions(skills.length, sphereRadius), []);
 
   useFrame((state) => {
@@ -54,57 +54,55 @@ const OrbitingSkills = ({ visible = true }: OrbitingSkillsProps) => {
 
     const time = state.clock.getElapsedTime();
 
+    // Slow idle rotation for the core elements only
     if (coreRef.current) {
-      coreRef.current.rotation.y = time * 0.1;
-      coreRef.current.rotation.x = Math.sin(time * 0.05) * 0.1;
+      coreRef.current.rotation.y = time * 0.05;
+      coreRef.current.rotation.x = Math.sin(time * 0.03) * 0.05;
     }
     
     if (wireframeRef.current) {
-      wireframeRef.current.rotation.y = -time * 0.08;
-      wireframeRef.current.rotation.z = time * 0.05;
+      wireframeRef.current.rotation.y = -time * 0.04;
+      wireframeRef.current.rotation.z = time * 0.025;
     }
-
-    const scale = 1 + Math.sin(time * 0.5) * 0.02;
-    groupRef.current.scale.setScalar(scale);
   });
 
   if (!visible) return null;
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* Central brain core - larger */}
+      {/* Central brain core */}
       <mesh ref={coreRef}>
-        <icosahedronGeometry args={[4, 2]} />
+        <icosahedronGeometry args={[5, 2]} />
         <meshBasicMaterial
           color="#ff8c1a"
           wireframe
           transparent
-          opacity={0.6}
+          opacity={0.5}
         />
       </mesh>
       
-      {/* Outer wireframe - larger */}
+      {/* Outer wireframe */}
       <mesh ref={wireframeRef}>
-        <icosahedronGeometry args={[5.5, 1]} />
+        <icosahedronGeometry args={[7, 1]} />
         <meshBasicMaterial
           color="#00d4d4"
           wireframe
           transparent
-          opacity={0.3}
+          opacity={0.25}
         />
       </mesh>
       
-      {/* Inner glow - larger */}
+      {/* Inner glow */}
       <mesh>
-        <sphereGeometry args={[3.5, 32, 32]} />
+        <sphereGeometry args={[4.5, 32, 32]} />
         <meshBasicMaterial
           color="#ff8c1a"
           transparent
-          opacity={0.15}
+          opacity={0.12}
         />
       </mesh>
 
-      {/* Skills as nodes on sphere */}
+      {/* Skills as nodes on sphere - MUCH LARGER */}
       {skills.map((skill, i) => {
         const pos = skillPositions[i];
         return (
@@ -115,50 +113,51 @@ const OrbitingSkills = ({ visible = true }: OrbitingSkillsProps) => {
                 <bufferAttribute
                   attach="attributes-position"
                   count={2}
-                  array={new Float32Array([0, 0, 0, -pos.x * 0.6, -pos.y * 0.6, -pos.z * 0.6])}
+                  array={new Float32Array([0, 0, 0, -pos.x * 0.5, -pos.y * 0.5, -pos.z * 0.5])}
                   itemSize={3}
                 />
               </bufferGeometry>
-              <lineBasicMaterial color={skill.color} transparent opacity={0.3} />
+              <lineBasicMaterial color={skill.color} transparent opacity={0.4} />
             </line>
             
-            {/* Glow sphere */}
+            {/* Glow sphere - larger */}
             <mesh>
-              <sphereGeometry args={[0.4, 16, 16]} />
+              <sphereGeometry args={[0.8, 16, 16]} />
               <meshBasicMaterial
                 color={skill.color}
                 transparent
-                opacity={0.4}
+                opacity={0.5}
                 blending={THREE.AdditiveBlending}
               />
             </mesh>
             
-            {/* HTML Logo */}
+            {/* HTML Logo - Much larger and clearer */}
             <Html
               center
-              distanceFactor={12}
+              distanceFactor={8}
               style={{ pointerEvents: 'none' }}
             >
-              <div className="flex flex-col items-center gap-1">
+              <div className="flex flex-col items-center gap-2">
                 <div 
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center backdrop-blur-sm"
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center backdrop-blur-md border border-white/10"
                   style={{ 
-                    background: `radial-gradient(circle, ${skill.color}40 0%, transparent 70%)`,
-                    boxShadow: `0 0 20px ${skill.color}40`,
+                    background: `radial-gradient(circle, ${skill.color}50 0%, ${skill.color}20 50%, transparent 70%)`,
+                    boxShadow: `0 0 30px ${skill.color}50, inset 0 0 20px ${skill.color}30`,
                   }}
                 >
                   <img 
                     src={skill.icon} 
                     alt={skill.name}
-                    className="w-6 h-6 sm:w-8 sm:h-8 object-contain drop-shadow-lg"
+                    className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-lg"
                   />
                 </div>
                 <span 
-                  className="text-[9px] sm:text-[10px] font-mono font-semibold whitespace-nowrap px-1 rounded"
+                  className="text-sm sm:text-base font-semibold whitespace-nowrap px-3 py-1 rounded-full"
                   style={{ 
-                    color: skill.color, 
-                    textShadow: `0 0 8px ${skill.color}`,
-                    background: 'rgba(0,0,0,0.5)',
+                    color: '#fff', 
+                    textShadow: `0 0 10px ${skill.color}, 0 0 20px ${skill.color}`,
+                    background: `linear-gradient(135deg, ${skill.color}40, ${skill.color}20)`,
+                    border: `1px solid ${skill.color}50`,
                   }}
                 >
                   {skill.name}
@@ -170,13 +169,13 @@ const OrbitingSkills = ({ visible = true }: OrbitingSkillsProps) => {
       })}
 
       {/* Orbital rings - larger */}
-      {[7.5, 8.5, 9.5].map((radius, i) => (
+      {[10, 11.5, 13].map((radius, i) => (
         <mesh key={radius} rotation={[Math.PI / 2 + i * 0.2, i * 0.3, 0]}>
-          <torusGeometry args={[radius, 0.02, 8, 64]} />
+          <torusGeometry args={[radius, 0.03, 8, 64]} />
           <meshBasicMaterial
             color={i === 0 ? '#ff8c1a' : i === 1 ? '#00d4d4' : '#ffc107'}
             transparent
-            opacity={0.3}
+            opacity={0.35}
           />
         </mesh>
       ))}
