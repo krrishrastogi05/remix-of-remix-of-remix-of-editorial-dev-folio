@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,81 +6,81 @@
 
 @layer base {
   :root {
-    /* Deep Dark Theme with Rich Accents */
-    --background: 220 20% 4%;
-    --foreground: 40 10% 95%;
+    /* Cosmic Neural Core Theme */
+    --background: 222 47% 5%;
+    --foreground: 220 13% 91%;
 
-    --card: 220 20% 6%;
-    --card-foreground: 40 10% 95%;
+    --card: 222 47% 11%;
+    --card-foreground: 220 13% 91%;
 
-    --popover: 220 20% 6%;
-    --popover-foreground: 40 10% 95%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 220 13% 91%;
 
-    /* Lamborghini Orange as Primary */
-    --primary: 28 100% 55%;
-    --primary-foreground: 220 20% 4%;
+    /* Neural Violet as Primary */
+    --primary: 240 100% 74%;
+    --primary-foreground: 222 47% 5%;
 
     /* Electric Cyan as Secondary */
-    --secondary: 185 100% 50%;
-    --secondary-foreground: 220 20% 4%;
+    --secondary: 187 100% 50%;
+    --secondary-foreground: 222 47% 5%;
 
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 65%;
 
-    /* Gold Accent */
-    --accent: 45 100% 55%;
-    --accent-foreground: 220 20% 4%;
+    /* Soft Glow Accent */
+    --accent: 199 89% 61%;
+    --accent-foreground: 222 47% 5%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 40 10% 95%;
+    --destructive-foreground: 220 13% 91%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 28 100% 55%;
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 240 100% 74%;
 
     --radius: 0.5rem;
 
-    /* Cosmic Palette - Warm & Rich */
-    --cosmic-void: 220 20% 2%;
-    --cosmic-deep: 220 20% 4%;
-    --cosmic-orange: 28 100% 55%;
-    --cosmic-amber: 38 100% 50%;
-    --cosmic-gold: 45 100% 55%;
-    --cosmic-cyan: 185 100% 50%;
-    --cosmic-white: 40 10% 95%;
-    --cosmic-star: 45 100% 85%;
+    /* Cosmic Neural Core Palette */
+    --cosmic-void: 222 47% 4%;
+    --cosmic-deep: 222 47% 5%;
+    --cosmic-surface: 222 47% 11%;
+    --cosmic-border: 222 30% 18%;
     
-    /* Neon Glows */
-    --glow-orange: 28 100% 55%;
-    --glow-amber: 38 100% 50%;
-    --glow-cyan: 185 100% 50%;
+    /* Neural Accents */
+    --neural-violet: 240 100% 74%;
+    --neural-cyan: 187 100% 50%;
+    --neural-glow: 199 89% 61%;
+    
+    /* Typography */
+    --text-primary: 220 13% 91%;
+    --text-muted: 215 20% 65%;
+    --text-subtle: 215 16% 47%;
 
-    /* HUD Elements */
-    --hud-border: 28 100% 55%;
-    --hud-bg: 220 20% 6%;
-    --hud-text: 28 100% 65%;
+    /* Glow Effects */
+    --glow-violet: 240 100% 74%;
+    --glow-cyan: 187 100% 50%;
   }
 
   .dark {
-    --background: 220 20% 4%;
-    --foreground: 40 10% 95%;
-    --card: 220 20% 6%;
-    --card-foreground: 40 10% 95%;
-    --popover: 220 20% 6%;
-    --popover-foreground: 40 10% 95%;
-    --primary: 28 100% 55%;
-    --primary-foreground: 220 20% 4%;
-    --secondary: 185 100% 50%;
-    --secondary-foreground: 220 20% 4%;
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 55%;
-    --accent: 45 100% 55%;
-    --accent-foreground: 220 20% 4%;
+    --background: 222 47% 5%;
+    --foreground: 220 13% 91%;
+    --card: 222 47% 11%;
+    --card-foreground: 220 13% 91%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 220 13% 91%;
+    --primary: 240 100% 74%;
+    --primary-foreground: 222 47% 5%;
+    --secondary: 187 100% 50%;
+    --secondary-foreground: 222 47% 5%;
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 199 89% 61%;
+    --accent-foreground: 222 47% 5%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 40 10% 95%;
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 28 100% 55%;
+    --destructive-foreground: 220 13% 91%;
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 240 100% 74%;
   }
 }
 
@@ -95,7 +95,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
   }
 
@@ -105,7 +105,7 @@
   }
 
   ::selection {
-    background: hsl(var(--cosmic-orange) / 0.4);
+    background: hsl(var(--neural-violet) / 0.4);
     color: hsl(var(--foreground));
   }
 }
@@ -119,28 +119,41 @@
     font-family: 'Space Grotesk', sans-serif;
   }
 
-  /* Text Gradient - Warm */
-  .text-gradient-cosmic {
-    @apply bg-gradient-to-r from-[hsl(var(--cosmic-orange))] via-[hsl(var(--cosmic-amber))] to-[hsl(var(--cosmic-gold))] bg-clip-text text-transparent;
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-heading {
+    font-family: 'Sora', sans-serif;
+  }
+
+  /* Neural Gradient Text */
+  .text-gradient-neural {
+    @apply bg-gradient-to-r from-[hsl(var(--neural-violet))] to-[hsl(var(--neural-cyan))] bg-clip-text text-transparent;
+  }
+
+  /* Cosmic Background Gradient */
+  .bg-cosmic-gradient {
+    background: radial-gradient(circle at top, hsl(var(--cosmic-surface)) 0%, hsl(var(--cosmic-deep)) 60%);
   }
 
   /* Glow Effects */
-  .glow-orange {
-    box-shadow: 0 0 20px hsl(var(--glow-orange) / 0.5),
-                0 0 40px hsl(var(--glow-orange) / 0.3),
-                0 0 60px hsl(var(--glow-orange) / 0.1);
+  .glow-violet {
+    box-shadow: 0 0 20px hsl(var(--glow-violet) / 0.35),
+                0 0 40px hsl(var(--glow-violet) / 0.2),
+                0 0 60px hsl(var(--glow-violet) / 0.1);
   }
 
   .glow-cyan {
-    box-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.5),
-                0 0 40px hsl(var(--glow-cyan) / 0.3),
+    box-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.35),
+                0 0 40px hsl(var(--glow-cyan) / 0.2),
                 0 0 60px hsl(var(--glow-cyan) / 0.1);
   }
 
-  .text-glow-orange {
-    text-shadow: 0 0 10px hsl(var(--glow-orange) / 0.8),
-                 0 0 20px hsl(var(--glow-orange) / 0.5),
-                 0 0 40px hsl(var(--glow-orange) / 0.3);
+  .text-glow-violet {
+    text-shadow: 0 0 10px hsl(var(--glow-violet) / 0.8),
+                 0 0 20px hsl(var(--glow-violet) / 0.5),
+                 0 0 40px hsl(var(--glow-violet) / 0.3);
   }
 
   .text-glow-cyan {
@@ -149,15 +162,32 @@
                  0 0 40px hsl(var(--glow-cyan) / 0.3);
   }
 
-  /* HUD Panel */
-  .hud-panel {
-    @apply relative bg-[hsl(var(--hud-bg)/0.95)] border border-[hsl(var(--hud-border)/0.3)];
+  /* Card Depth Effect */
+  .card-neural {
+    @apply relative backdrop-blur-md;
+    background: hsl(var(--cosmic-surface) / 0.8);
+    border: 1px solid hsl(var(--cosmic-border) / 0.5);
   }
 
-  .hud-panel::before {
+  .card-neural::before {
     content: '';
-    @apply absolute inset-0 pointer-events-none;
-    background: linear-gradient(135deg, hsl(var(--cosmic-orange) / 0.05) 0%, transparent 50%);
+    @apply absolute inset-0 pointer-events-none rounded-inherit;
+    background: linear-gradient(135deg, hsl(var(--neural-violet) / 0.05) 0%, transparent 50%);
+  }
+
+  /* Neural Line Pulse */
+  .neural-line {
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      hsl(var(--neural-cyan)) 50%,
+      transparent 100%
+    );
+    animation: neural-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes neural-pulse {
+    0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
+    50% { opacity: 1; transform: scaleX(1); }
   }
 }
 
