@@ -8,13 +8,13 @@
   :root {
     /* Cosmic Neural Core Theme */
     --background: 222 47% 5%;
-    --foreground: 220 13% 91%;
+    --foreground: 0 0% 100%;
 
     --card: 222 47% 11%;
-    --card-foreground: 220 13% 91%;
+    --card-foreground: 0 0% 100%;
 
     --popover: 222 47% 11%;
-    --popover-foreground: 220 13% 91%;
+    --popover-foreground: 0 0% 100%;
 
     /* Neural Violet as Primary */
     --primary: 240 100% 74%;
@@ -52,9 +52,9 @@
     --neural-glow: 199 89% 61%;
     
     /* Typography */
-    --text-primary: 220 13% 91%;
-    --text-muted: 215 20% 65%;
-    --text-subtle: 215 16% 47%;
+    --text-primary: 0 0% 100%;
+    --text-muted: 215 20% 75%;
+    --text-subtle: 215 16% 55%;
 
     /* Glow Effects */
     --glow-violet: 240 100% 74%;
@@ -63,17 +63,17 @@
 
   .dark {
     --background: 222 47% 5%;
-    --foreground: 220 13% 91%;
+    --foreground: 0 0% 100%;
     --card: 222 47% 11%;
-    --card-foreground: 220 13% 91%;
+    --card-foreground: 0 0% 100%;
     --popover: 222 47% 11%;
-    --popover-foreground: 220 13% 91%;
+    --popover-foreground: 0 0% 100%;
     --primary: 240 100% 74%;
     --primary-foreground: 222 47% 5%;
     --secondary: 187 100% 50%;
     --secondary-foreground: 222 47% 5%;
     --muted: 222 30% 18%;
-    --muted-foreground: 215 20% 65%;
+    --muted-foreground: 215 20% 75%;
     --accent: 199 89% 61%;
     --accent-foreground: 222 47% 5%;
     --destructive: 0 84% 60%;
