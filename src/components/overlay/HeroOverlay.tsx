@@ -9,10 +9,10 @@ const HeroOverlay = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 mb-6 sm:mb-8 px-3 sm:px-4 py-2 border border-cosmic-orange/40 rounded-full"
+          className="inline-flex items-center gap-2 mb-6 sm:mb-8 px-3 sm:px-4 py-2 border border-primary/40 rounded-full"
         >
-          <span className="w-2 h-2 rounded-full bg-cosmic-orange animate-pulse" />
-          <span className="text-xs sm:text-sm font-mono text-cosmic-orange">Available for opportunities</span>
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <span className="text-xs sm:text-sm font-mono text-primary">Available for opportunities</span>
         </motion.div>
 
         {/* Main headline */}
@@ -24,7 +24,7 @@ const HeroOverlay = () => {
         >
           <span className="text-foreground">Software Developer,</span>
           <br />
-          <span className="text-gradient-cosmic">building stuff that matters.</span>
+          <span className="text-gradient-neural">building stuff that matters.</span>
         </motion.h1>
 
         {/* Subtext */}
@@ -47,7 +47,7 @@ const HeroOverlay = () => {
         >
           <a
             href="#projects"
-            className="group relative px-8 py-3.5 bg-cosmic-orange text-primary-foreground font-semibold rounded-md overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(255,140,26,0.5)] hover:scale-105"
+            className="group relative px-8 py-3.5 bg-primary text-background font-semibold rounded-md overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(124,124,255,0.5)] hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2">
               View Projects
@@ -55,12 +55,12 @@ const HeroOverlay = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-cosmic-orange to-cosmic-amber opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
           
           <a
             href="#about"
-            className="px-8 py-3.5 border-2 border-cosmic-cyan/60 text-cosmic-cyan font-semibold rounded-md transition-all hover:bg-cosmic-cyan/10 hover:border-cosmic-cyan hover:shadow-[0_0_25px_rgba(0,212,212,0.3)] hover:scale-105"
+            className="px-8 py-3.5 border-2 border-secondary/60 text-secondary font-semibold rounded-md transition-all hover:bg-secondary/10 hover:border-secondary hover:shadow-[0_0_25px_rgba(0,229,255,0.3)] hover:scale-105"
           >
             About Me
           </a>
@@ -79,7 +79,7 @@ const HeroOverlay = () => {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-px h-8 bg-gradient-to-b from-cosmic-orange/50 to-transparent"
+            className="w-px h-8 bg-gradient-to-b from-primary/50 to-transparent"
           />
         </div>
       </motion.div>
