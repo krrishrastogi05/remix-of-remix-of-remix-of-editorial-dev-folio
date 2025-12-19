@@ -1,10 +1,9 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 import { Suspense, useEffect, useState } from 'react';
 import { useMediaQuery } from '@/hooks/use-mobile';
 import Starfield from './Starfield';
 import NeuralNetwork from './NeuralNetwork';
-import OrbitingSkills from './OrbitingSkills';
+import FloatingSkillCards from './FloatingSkillCards';
 
 interface CosmicSceneProps {
   scrollProgress: number;
@@ -25,13 +24,13 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
   const showSkills = currentSection === 'skills';
   const showNeural = currentSection === 'hero' || currentSection === 'about';
 
-  // Camera positioning
-  const cameraZ = showSkills ? 20 : (isMobile ? 35 : 30);
+  // Camera positioning - wider view for floating cards
+  const cameraZ = showSkills ? 18 : (isMobile ? 35 : 30);
 
   return (
     <div className="fixed inset-0 z-0">
       <Canvas
-        camera={{ position: [0, 0, cameraZ], fov: 60 }}
+        camera={{ position: [0, 0, cameraZ], fov: 65 }}
         gl={{
           antialias: true,
           alpha: true,
@@ -42,7 +41,7 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
         <color attach="background" args={['#080c14']} />
         
         <Suspense fallback={null}>
-          <ambientLight intensity={0.05} />
+          <ambientLight intensity={0.1} />
           
           {/* Starfield */}
           <Starfield count={starCount} scrollProgress={scrollProgress} />
@@ -50,21 +49,8 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
           {/* Neural network - visible in hero/about */}
           {showNeural && <NeuralNetwork scrollProgress={scrollProgress} />}
           
-          {/* Large orbiting skills globe - visible in skills section */}
-          <OrbitingSkills visible={showSkills} />
-          
-          {/* User can rotate the skills globe when in skills section */}
-          {showSkills && (
-            <OrbitControls 
-              enableZoom={true}
-              enablePan={false}
-              minDistance={12}
-              maxDistance={35}
-              autoRotate={false}
-              rotateSpeed={0.5}
-              target={[6, 0, 0]}
-            />
-          )}
+          {/* Floating skill cards - visible in skills section */}
+          <FloatingSkillCards visible={showSkills} />
           
           {/* Accent lights */}
           <pointLight
