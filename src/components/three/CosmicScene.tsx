@@ -25,8 +25,8 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
   const showSkills = currentSection === 'skills';
   const showNeural = currentSection === 'hero' || currentSection === 'about';
 
-  // Camera positioning - closer for skills to show the big globe
-  const cameraZ = showSkills ? 25 : (isMobile ? 35 : 30);
+  // Camera positioning
+  const cameraZ = showSkills ? 20 : (isMobile ? 35 : 30);
 
   return (
     <div className="fixed inset-0 z-0">
@@ -53,15 +53,16 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
           {/* Large orbiting skills globe - visible in skills section */}
           <OrbitingSkills visible={showSkills} />
           
-          {/* User can rotate the skills globe */}
+          {/* User can rotate the skills globe when in skills section */}
           {showSkills && (
             <OrbitControls 
               enableZoom={true}
               enablePan={false}
-              minDistance={10}
-              maxDistance={25}
+              minDistance={12}
+              maxDistance={35}
               autoRotate={false}
-              rotateSpeed={0.6}
+              rotateSpeed={0.5}
+              target={[6, 0, 0]}
             />
           )}
           
