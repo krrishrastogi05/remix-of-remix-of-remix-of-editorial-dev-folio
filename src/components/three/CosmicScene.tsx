@@ -38,7 +38,7 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
         }}
         dpr={[1, isMobile ? 1.5 : 2]}
       >
-        <color attach="background" args={['#080c14']} />
+        <color attach="background" args={['#070B14']} />
         
         <Suspense fallback={null}>
           <ambientLight intensity={0.1} />
@@ -52,18 +52,18 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
           {/* Floating skill cards - visible in skills section */}
           <FloatingSkillCards visible={showSkills} />
           
-          {/* Accent lights */}
+          {/* Neural accent lights */}
           <pointLight
             position={[0, 0, -60]}
             intensity={1.5}
-            color="#ff8c1a"
+            color="#7C7CFF"
             distance={120}
           />
           
           <pointLight
             position={[30, 20, -40]}
             intensity={0.8}
-            color="#00d4d4"
+            color="#00E5FF"
             distance={80}
           />
         </Suspense>

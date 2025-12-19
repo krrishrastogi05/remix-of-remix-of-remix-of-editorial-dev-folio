@@ -15,6 +15,8 @@ export default {
     extend: {
       fontFamily: {
         display: ['Space Grotesk', 'sans-serif'],
+        heading: ['Sora', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
@@ -54,22 +56,17 @@ export default {
         cosmic: {
           void: "hsl(var(--cosmic-void))",
           deep: "hsl(var(--cosmic-deep))",
-          orange: "hsl(var(--cosmic-orange))",
-          amber: "hsl(var(--cosmic-amber))",
-          gold: "hsl(var(--cosmic-gold))",
-          cyan: "hsl(var(--cosmic-cyan))",
-          white: "hsl(var(--cosmic-white))",
-          star: "hsl(var(--cosmic-star))",
+          surface: "hsl(var(--cosmic-surface))",
+          border: "hsl(var(--cosmic-border))",
+        },
+        neural: {
+          violet: "hsl(var(--neural-violet))",
+          cyan: "hsl(var(--neural-cyan))",
+          glow: "hsl(var(--neural-glow))",
         },
         glow: {
-          orange: "hsl(var(--glow-orange))",
-          amber: "hsl(var(--glow-amber))",
+          violet: "hsl(var(--glow-violet))",
           cyan: "hsl(var(--glow-cyan))",
-        },
-        hud: {
-          border: "hsl(var(--hud-border))",
-          bg: "hsl(var(--hud-bg))",
-          text: "hsl(var(--hud-text))",
         },
       },
       borderRadius: {
@@ -90,11 +87,16 @@ export default {
           from: { opacity: "0", transform: "translateY(30px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "neural-pulse": {
+          "0%, 100%": { opacity: "0.3", transform: "scaleX(0.8)" },
+          "50%": { opacity: "1", transform: "scaleX(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.6s ease-out forwards",
+        "neural-pulse": "neural-pulse 3s ease-in-out infinite",
       },
     },
   },
