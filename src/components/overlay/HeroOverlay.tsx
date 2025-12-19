@@ -38,43 +38,48 @@ const HeroOverlay = () => {
           and enhancing user experiences.
         </motion.p>
 
-        {/* CTA */}
+        {/* CTA - positioned at bottom left */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+          className="fixed bottom-32 left-6 sm:left-12 flex flex-col gap-3 z-20"
         >
           <a
             href="#projects"
-            className="w-full sm:w-auto group relative px-6 sm:px-8 py-3 bg-cosmic-orange text-primary-foreground font-semibold rounded-sm overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(255,140,26,0.5)]"
+            className="group relative px-8 py-3.5 bg-cosmic-orange text-primary-foreground font-semibold rounded-md overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(255,140,26,0.6)] hover:scale-105"
           >
-            <span className="relative z-10">View Projects</span>
+            <span className="relative z-10 flex items-center gap-2">
+              View Projects
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
             <div className="absolute inset-0 bg-gradient-to-r from-cosmic-orange to-cosmic-amber opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
           
           <a
             href="#about"
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 border border-cosmic-cyan/50 text-cosmic-cyan font-semibold rounded-sm transition-all hover:bg-cosmic-cyan/10 hover:border-cosmic-cyan text-center"
+            className="px-8 py-3.5 border-2 border-cosmic-cyan/60 text-cosmic-cyan font-semibold rounded-md transition-all hover:bg-cosmic-cyan/15 hover:border-cosmic-cyan hover:shadow-[0_0_30px_rgba(0,212,212,0.4)] hover:scale-105 text-center backdrop-blur-sm"
           >
             About Me
           </a>
         </motion.div>
       </div>
 
-      {/* Scroll indicator - positioned higher to avoid nav overlap */}
+      {/* Scroll indicator - bottom center */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.5 }}
-        className="absolute bottom-28 sm:bottom-32 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-xs font-mono text-muted-foreground tracking-widest">SCROLL</span>
+          <span className="text-xs font-mono text-muted-foreground/60 tracking-widest">SCROLL</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-px h-6 sm:h-8 bg-gradient-to-b from-cosmic-orange to-transparent"
+            className="w-px h-6 sm:h-8 bg-gradient-to-b from-cosmic-orange/50 to-transparent"
           />
         </div>
       </motion.div>
