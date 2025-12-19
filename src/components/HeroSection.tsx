@@ -12,7 +12,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="flex-1 max-w-2xl"
           >
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -23,13 +23,13 @@ const HeroSection = () => {
                 <motion.span
                   initial={{ opacity: 0, scale: 0.5, rotateX: -90 }}
                   animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-                  transition={{ 
-                    duration: 0.8, 
+                  transition={{
+                    duration: 0.8,
                     delay: 0.4,
                     type: "spring",
-                    stiffness: 120
+                    stiffness: 120,
                   }}
-                  className="inline-block bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent"
+                  className="inline-block text-white"
                 >
                   Krrish
                 </motion.span>
@@ -37,27 +37,33 @@ const HeroSection = () => {
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
-                  className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full origin-left"
+                  className="absolute -bottom-2 left-0 w-full h-1 bg-white rounded-full origin-left"
                 />
               </span>
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl text-muted-foreground font-sans leading-relaxed"
             >
-              Software Developer, building stuff that matters. Passionate about creating innovative solutions with AI, modern web technologies, and enhancing user experiences.
+              Software Developer, passionate about creating complex backend
+              systems and solving software level problems.
             </motion.p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, type: "spring", stiffness: 100 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.3,
+              type: "spring",
+              stiffness: 100,
+            }}
             className="flex-shrink-0"
           >
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
               className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-border grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl"

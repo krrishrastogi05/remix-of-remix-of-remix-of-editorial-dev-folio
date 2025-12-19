@@ -20,7 +20,8 @@ const CosmicScene = ({ scrollProgress, currentSection }: CosmicSceneProps) => {
   if (!mounted) return null;
 
   const starCount = isMobile ? 1200 : 2500;
-  const showNeural = currentSection === 'hero' || currentSection === 'about';
+  // const showNeural = currentSection === 'hero' || currentSection === 'about';
+  const showNeural = false;
 
   // Camera positioning
   const cameraZ = isMobile ? 35 : 30;

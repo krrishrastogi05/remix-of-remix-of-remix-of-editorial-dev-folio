@@ -6,11 +6,52 @@ const projects = [
   {
     title: "Argus.AI",
     description:
-      "A multimodal generative AI powered application that processes social media data (text, audio, and images) to generate actionable insights for critical and quick response operations. Utilizes NLP and computer vision capabilities of modern AI models like Google Gemini.",
+      "A sophisticated AI-powered command center that processes real-time social media data and emergency calls to provide actionable intelligence for crisis response. Uses multimodal generative AI to analyze text, audio, and images from various sources, generating incident reports with geolocation, severity scoring, and automatic resource dispatch recommendations.",
     image: argusPreview,
-    technologies: ["React", "Python", "Google Gemini", "NLP", "Computer Vision"],
+    technologies: [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.io",
+      "Google Gemini API",
+      "Leaflet Maps",
+    ],
     sourceUrl: "https://github.com/krrishrastogi05/Argus.AI",
-    demoUrl: "https://argus-ai-psi.vercel.app/",
+    demoUrl: "https://argus-ai-psi.vercel.app",
+  },
+  {
+    title: "CodeFortress Extension",
+    description:
+      "A productivity tool for competitive programmers that combines a Chrome extension and VSCode extension. Allows users to scrape Codeforces contest problems directly and view them in their IDE, eliminating context switching and improving workflow efficiency.",
+    image: argusPreview,
+    technologies: [
+      "Chrome Extension",
+      "VSCode Extension",
+      "TypeScript",
+      "Node.js",
+      "WebSocket",
+      "React",
+      "Tailwind CSS",
+      "Vite",
+    ],
+    sourceUrl: "https://github.com/krrishrastogi05/CodeFortress-Extension",
+  },
+  {
+    title: "Traffic Management System",
+    description:
+      "A backend workflow system that utilizes Google Routes API combined with cron jobs to fetch traffic information between two points at regular intervals. Designed for intelligent traffic monitoring and route optimization.",
+    image: argusPreview,
+    technologies: [
+      "JavaScript",
+      "Node.js",
+      "Google Cloud Platform",
+      "Google Maps Routes API",
+      "Cron Jobs",
+    ],
+    sourceUrl: "https://github.com/krrishrastogi05/traffic-management-system",
   },
 ];
 
@@ -24,7 +65,7 @@ const ProjectsSection = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-14"
       >
-        <motion.span 
+        <motion.span
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -33,7 +74,7 @@ const ProjectsSection = () => {
         >
           My Projects
         </motion.span>
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -42,15 +83,15 @@ const ProjectsSection = () => {
         >
           Check out my latest work
         </motion.h2>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-muted-foreground font-sans text-lg max-w-2xl mx-auto"
         >
-          I've worked on a variety of projects, from simple websites to complex applications. 
-          Here are a few of my favorites.
+          I've worked on a variety of projects, from simple websites to complex
+          applications. Here are a few of my favorites.
         </motion.p>
       </motion.div>
 
