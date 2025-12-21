@@ -13,6 +13,7 @@ const sections = [
   { id: "about", label: "01", name: "ABOUT" },
   { id: "skills", label: "02", name: "SKILLS" },
   { id: "projects", label: "03", name: "PROJECTS" },
+  { id: "achievements", label: "04", name: "ACHIEVEMENTS" },
 ];
 
 const ScrollProgressLine = ({}: ScrollProgressLineProps) => {

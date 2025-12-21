@@ -9,7 +9,7 @@ const dockItems = [
 ];
 
 const externalLinks = [
-  { icon: Github, label: 'GitHub', href: 'https://github.com' },
+  { icon: Github, label: 'GitHub', href: 'https://github.com/krrishrastogi05' },
   { icon: FileText, label: 'Resume', href: '/resume.pdf' },
   { icon: Newspaper, label: 'Blog', href: 'https://blog.com' },
 ];

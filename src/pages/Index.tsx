@@ -6,6 +6,7 @@ import SkillsOverlay from "@/components/overlay/SkillsOverlay";
 import ProjectsOverlay from "@/components/overlay/ProjectsOverlay";
 import CosmicDock from "@/components/overlay/CosmicDock";
 import ScrollProgressLine from "@/components/overlay/ScrollProgressLine";
+import Achievements from "@/components/overlay/Achievements"
 import AudioController from "@/components/AudioController";
 
 const Index = () => {
@@ -30,6 +31,7 @@ const Index = () => {
         <AboutOverlay />
         <SkillsOverlay />
         <ProjectsOverlay />
+        <Achievements/>
       </main>
 
       {/* Navigation Dock */}
